@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import getStocks from "../hooks/getStocks";
+
 import { Table } from "reactstrap";
 
 const StockChart = () => {
@@ -9,7 +9,6 @@ const StockChart = () => {
     await fetch("http://131.181.190.87:3000/stocks/symbols")
       .then((response) => response.json())
       .then((res) => {
-        console.log(res);
         setStocks(res);
       });
   };
@@ -17,7 +16,7 @@ const StockChart = () => {
   const getInfo = () => {
     return stocks.map((stock) => {
       return (
-        <tr>
+        <tr key={stock.name}>
           <td>{stock.name}</td>
           <td>{stock.symbol}</td>
           <td>{stock.industry}</td>

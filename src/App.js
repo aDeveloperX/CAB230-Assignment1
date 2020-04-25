@@ -1,13 +1,12 @@
 import React from "react";
-import Navigationbar from "./components/Navigationbar/Navigationbar";
-import StockChart from "./components/StockChart";
+
+import Container from "./containers/Container";
 import "./App.css";
 
 function App() {
   return (
     <>
-      <Navigationbar></Navigationbar>
-      <StockChart></StockChart>
+      <Container></Container>
     </>
   );
 }

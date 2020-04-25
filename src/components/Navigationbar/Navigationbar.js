@@ -1,11 +1,9 @@
 import React from "react";
 import { Navbar, Nav, NavItem, NavLink } from "reactstrap";
-import getStocks from "../hooks/getStocks";
-import registerUser from "../hooks/registerUser";
-import loginUser from "../hooks/loginUser";
+import LoginButton from "./Buttons/LoginButton";
+import RegisterButton from "./Buttons/RegisterButton";
 const Navigationbar = () => {
-  getStocks();
-  loginUser("haha@gmail.com", "123123asd");
+  //loginUser("haha@gmail.com", "123123asd");
   return (
     <div>
       <Navbar color="light" light expand="md">
@@ -23,12 +21,8 @@ const Navigationbar = () => {
             <NavLink href="">Price History(restricted)</NavLink>
           </NavItem>
         </Nav>
-        <NavItem>
-          <NavLink href="">Register</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="">Login</NavLink>
-        </NavItem>
+        <RegisterButton></RegisterButton>
+        <LoginButton></LoginButton>
       </Navbar>
     </div>
   );

@@ -1,1 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import getStocks from "../hooks/getStocks";
+import { Table } from "reactstrap";
+
+const StockChart = () => {
+  const [stocks, setStocks] = useState([]);
+
+  const getStock = async () => {
+    await fetch("http://131.181.190.87:3000/stocks/symbols")
+      .then((response) => response.json())
+      .then((res) => {
+        console.log(res);
+        setStocks(res);
+      });
+  };
+
+  const getInfo = () => {
+    return stocks.map((stock) => {
+      return (
+        <tr>
+          <td>{stock.name}</td>
+          <td>{stock.symbol}</td>
+          <td>{stock.industry}</td>
+        </tr>
+      );
+    });
+  };
+
+  if (stocks.length === 0) {
+    getStock();
+  }
+
+  return (
+    <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>Stock Name</th>
+          <th>Stock Symblol</th>
+          <th>Stock Industry</th>
+        </tr>
+      </thead>
+      <tbody>{getInfo()}</tbody>
+    </Table>
+  );
+};
+
+export default StockChart;

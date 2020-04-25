@@ -10,7 +10,7 @@ const loginUser = (email, password) => {
     },
   };
   fetch("http://131.181.190.87:3000/user/login", post).then((response) => {
-    console.log(response.json());
+    // console.log(response.json());
     return response.json();
   });
 };

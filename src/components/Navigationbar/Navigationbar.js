@@ -1,20 +1,22 @@
 import React from "react";
 import { Navbar, Nav, NavItem, NavLink } from "reactstrap";
 import UserControls from "./UserControls/UserControls";
+import { NavLink as RRnavLink } from 'react-router-dom'
+
+
 const NavigationBar = () => {
-  //loginUser("haha@gmail.com", "123123asd");
   return (
     <div>
       <Navbar color="light" light expand="md">
         <Nav className="mr-auto" navbar>
           <NavItem>
-            <NavLink href="/components/">Home</NavLink>
+            <NavLink tag={RRnavLink} exact to="/">Home</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="">Stock</NavLink>
+            <NavLink tag={RRnavLink} to="/stocks">Stock</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="">Quote</NavLink>
+            <NavLink >Quote</NavLink>
           </NavItem>
           <NavItem>
             <NavLink href="">Price History(restricted)</NavLink>

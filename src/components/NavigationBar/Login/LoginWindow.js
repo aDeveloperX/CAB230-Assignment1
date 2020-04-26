@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import loginUser from '../../../hooks/loginUser'
+
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 
 const LoginWindow = (props) => {
@@ -14,9 +14,31 @@ const LoginWindow = (props) => {
     setPassword(e.target.value)
   }
 
-  const submitHandler = () => {
-    (!email && !password) ? console.log("yes") : console.log("no")
+  const loginUser = async () => {
+    const post = {
+      method: "POST",
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    };
+    fetch("http://131.181.190.87:3000/user/login", post).then((response) => {
+      console.log(response.json());
+      return response.json();
+    });
+  };
+
+  const submitHandler = async (e) => {
+    e.preventDefault()
+    if (email !== "" && password !== "") {
+      await loginUser()
+
+    }
   }
+
   return (
     <div>
       <Modal isOpen={props.show} toggle={props.toggle}>

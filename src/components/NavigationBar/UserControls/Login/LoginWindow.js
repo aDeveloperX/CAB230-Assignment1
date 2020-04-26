@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import registerUser from '../../../hooks/registerUser'
+
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 
 const LoginWindow = (props) => {
@@ -34,7 +34,7 @@ const LoginWindow = (props) => {
           console.log(res.message)
         } else {
           props.login()
-          props.toggle()
+          props.getname(email)
         }
       })
   };
@@ -48,7 +48,7 @@ const LoginWindow = (props) => {
 
   return (
     <div>
-      <Modal isOpen={props.show} toggle={props.toggle}>
+      <Modal isOpen={props.show}>
         <ModalHeader toggle={props.toggle}>Log in</ModalHeader>
         <ModalBody>
           <div className="container">

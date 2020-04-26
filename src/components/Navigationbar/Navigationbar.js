@@ -1,7 +1,6 @@
 import React from "react";
 import { Navbar, Nav, NavItem, NavLink } from "reactstrap";
-import LoginControl from "./Login/LoginControl";
-import RegisterControl from "./Register/RegisterControl";
+import UserControls from "./UserControls/UserControls";
 const NavigationBar = () => {
   //loginUser("haha@gmail.com", "123123asd");
   return (
@@ -21,8 +20,7 @@ const NavigationBar = () => {
             <NavLink href="">Price History(restricted)</NavLink>
           </NavItem>
         </Nav>
-        <RegisterControl></RegisterControl>
-        <LoginControl></LoginControl>
+        <UserControls></UserControls>
       </Navbar>
     </div>
   );

@@ -1,21 +1,12 @@
 import React, { useState } from "react";
 
-import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
+import { Modal, ModalHeader, ModalBody } from "reactstrap";
 
 const LoginWindow = (props) => {
-  const { buttonLabel, className } = props;
-
-  const [modal, setModal] = useState(false);
-
-  const toggle = () => setModal(!modal);
-
   return (
     <div>
-      <Button color="danger" onClick={toggle}>
-        {buttonLabel}
-      </Button>
-      <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Log in</ModalHeader>
+      <Modal isOpen={props.show} toggle={props.toggle}>
+        <ModalHeader toggle={props.toggle}>Log in</ModalHeader>
         <ModalBody>
           <div className="container">
             <form className="float-none ">
@@ -27,7 +18,6 @@ const LoginWindow = (props) => {
                   placeholder="Enter email"
                 />
               </div>
-
               <div className="form-group">
                 <label>Password</label>
                 <input

@@ -1,4 +1,4 @@
-const registerUser = (email, password) => {
+const registerUser = async (email, password) => {
   const post = {
     method: "POST",
     body: JSON.stringify({

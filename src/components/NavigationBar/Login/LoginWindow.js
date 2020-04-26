@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import registerUser from '../../../hooks/registerUser'
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 
 const LoginWindow = (props) => {
@@ -14,6 +14,7 @@ const LoginWindow = (props) => {
     setPassword(e.target.value)
   }
 
+
   const loginUser = async () => {
     const post = {
       method: "POST",
@@ -25,17 +26,23 @@ const LoginWindow = (props) => {
         "Content-type": "application/json; charset=UTF-8",
       },
     };
-    fetch("http://131.181.190.87:3000/user/login", post).then((response) => {
-      console.log(response.json());
-      return response.json();
-    });
+    fetch("http://131.181.190.87:3000/user/login", post)
+      .then((response) => response.json())
+      .then(res => {
+        //"lol@test.com", "123321"
+        if (res.error === true) {
+          console.log(res.message)
+        } else {
+          props.login()
+          props.toggle()
+        }
+      })
   };
 
   const submitHandler = async (e) => {
     e.preventDefault()
     if (email !== "" && password !== "") {
       await loginUser()
-
     }
   }
 

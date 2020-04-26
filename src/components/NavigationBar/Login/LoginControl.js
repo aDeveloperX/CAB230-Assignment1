@@ -14,7 +14,6 @@ const LoginControl = () => {
     setIsLoggedin(true)
   }
 
-
   return (
     <div>
       <Button color="info" onClick={() => toggleHandler()}>

@@ -4,19 +4,23 @@ import LoginWindow from "./LoginWindow";
 
 const LoginControl = () => {
   const [isPoped, setIsPoped] = useState(false);
+  const [isLoggedin, setIsLoggedin] = useState(false)
 
   const toggleHandler = () => {
     setIsPoped(!isPoped);
-    console.log(isPoped);
   };
 
-  const loginWindow = isPoped ? <LoginWindow show={isPoped} toggle={toggleHandler}></LoginWindow> : <></>;
+  const loginHandler = () => {
+    setIsLoggedin(true)
+  }
+
+
   return (
     <div>
       <Button color="info" onClick={() => toggleHandler()}>
         Log in
       </Button>
-      {loginWindow}
+      <LoginWindow show={isPoped} toggle={toggleHandler} login={loginHandler}></LoginWindow>
     </div>
   );
 };

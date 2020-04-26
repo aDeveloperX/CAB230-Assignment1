@@ -34,7 +34,7 @@ const StockChart = () => {
       <thead>
         <tr>
           <th>Stock Name</th>
-          <th>Stock Symblol</th>
+          <th>Stock Symbol</th>
           <th>Stock Industry</th>
         </tr>
       </thead>

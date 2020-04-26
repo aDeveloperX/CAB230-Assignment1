@@ -1,7 +1,7 @@
 import React from "react";
 import NavigationBar from "../components/NavigationBar/NavigationBar";
 import { Switch, BrowserRouter, Route } from "react-router-dom";
-import StockChart from "../components/StockChart";
+import StockPage from "../components/StockPage/StockPage";
 import HomePage from "../components/HomePage/HomePage";
 
 const Container = () => {
@@ -10,7 +10,7 @@ const Container = () => {
       <NavigationBar></NavigationBar>
       <Switch>
         <Route exact path="/" component={() => <HomePage />}></Route>
-        <Route path="/stocks" component={() => <StockChart />}></Route>
+        <Route path="/stocks" component={() => <StockPage />}></Route>
       </Switch>
     </BrowserRouter>
   );

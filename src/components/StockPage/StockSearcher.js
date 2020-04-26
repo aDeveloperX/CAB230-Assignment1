@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button } from "reactstrap";
 
 const StockSearcher = (props) => {
   const getStock = async (name) => {

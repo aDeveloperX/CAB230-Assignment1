@@ -3,17 +3,16 @@ import React, { useState } from "react";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 
 const LoginWindow = (props) => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const emailHandler = (e) => {
-    setEmail(e.target.value)
-  }
+    setEmail(e.target.value);
+  };
 
   const passwordHandle = (e) => {
-    setPassword(e.target.value)
-  }
-
+    setPassword(e.target.value);
+  };
 
   const loginUser = async () => {
     const post = {
@@ -28,23 +27,24 @@ const LoginWindow = (props) => {
     };
     fetch("http://131.181.190.87:3000/user/login", post)
       .then((response) => response.json())
-      .then(res => {
+      .then((res) => {
         //"lol@test.com", "123321"
         if (res.error === true) {
-          console.log(res.message)
+          console.log(res.message);
         } else {
-          props.login()
-          props.getname(email)
+          localStorage.setItem("token", res.token);
+          props.login();
+          props.getname(email);
         }
-      })
+      });
   };
 
   const submitHandler = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (email !== "" && password !== "") {
-      await loginUser()
+      await loginUser();
     }
-  }
+  };
 
   return (
     <div>
@@ -71,7 +71,10 @@ const LoginWindow = (props) => {
                   placeholder="Enter password"
                 />
               </div>
-              <button onClick={submitHandler} className="btn btn-primary btn-block">
+              <button
+                onClick={submitHandler}
+                className="btn btn-primary btn-block"
+              >
                 Submit
               </button>
             </form>

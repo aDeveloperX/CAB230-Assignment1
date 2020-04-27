@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Table } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
 
-const StockDetailChart = (props) => {
+const StockResultChart = (props) => {
   const column = [
     { headerName: "Symbol", field: "symbol" },
     { headerName: "Name", field: "name" },
@@ -33,4 +32,4 @@ const StockDetailChart = (props) => {
   );
 };
 
-export default StockDetailChart;
+export default StockResultChart;

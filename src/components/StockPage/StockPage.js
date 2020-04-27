@@ -3,11 +3,12 @@ import StockChart from "./StockChart";
 import StockSearcher from "./StockSearcher";
 import StockDetailChart from "./StockDetailChart";
 
-const StockPage = () => {
+const StockPage = (props) => {
   const [stockDetail, setStockDetail] = useState();
+
   const chartToDisplay =
     stockDetail === undefined ? (
-      <StockChart></StockChart>
+      <StockChart data={props.data}></StockChart>
     ) : (
       <StockDetailChart stockdetail={stockDetail}></StockDetailChart>
     );

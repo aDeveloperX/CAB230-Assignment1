@@ -33,9 +33,9 @@ const LoginWindow = (props) => {
           console.log(res.message);
         } else {
           localStorage.setItem("token", res.token);
-          localStorage.getItem("isLogin", true);
+          localStorage.setItem("isLogin", true);
+          localStorage.setItem("username", email);
           props.login();
-          props.getname(email);
         }
       });
   };

@@ -18,7 +18,6 @@ const LoginControl = (props) => {
         show={isPoped}
         toggle={toggleHandler}
         login={props.login}
-        getname={props.getname}
       ></LoginWindow>
     </div>
   );

@@ -1,10 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 
-const RegisterWindow = () => {
+const RegisterWindow = (props) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const emailHandler = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const passwordHandle = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    if (email !== "" && password !== "") {
+      registerUser(email, password);
+    }
+  };
+
+  const registerUser = async (email, password) => {
+    const post = {
+      method: "POST",
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    };
+    fetch("http://131.181.190.87:3000/user/register", post)
+      .then((response) => response.json)
+      .then((res) => {
+        if (res.err) {
+          console.log(res);
+        } else {
+          window.alert("Register Succeeded");
+          props.toggle();
+        }
+      });
+  };
+
   return (
     <Modal isOpen={props.show}>
-      <ModalHeader toggle={props.toggle}>Log in</ModalHeader>
+      <ModalHeader toggle={props.toggle}>Register</ModalHeader>
       <ModalBody>
         <div className="container">
           <form className="float-none ">
@@ -30,7 +71,7 @@ const RegisterWindow = () => {
               onClick={submitHandler}
               className="btn btn-primary btn-block"
             >
-              Submit
+              Register
             </button>
           </form>
         </div>

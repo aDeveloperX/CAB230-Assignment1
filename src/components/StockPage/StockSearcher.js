@@ -5,15 +5,15 @@ const StockSearcher = (props) => {
     await fetch(`http://131.181.190.87:3000/stocks/${name}`)
       .then((response) => response.json())
       .then((res) => {
-        //props.setStocks(res);
-        console.log(res);
+        res.error ? props.setstock(undefined) : props.setstock(res);
       });
   };
+
   const inputHandler = (e) => {
     e.target.value = e.target.value.toUpperCase();
-
     getStock(e.target.value);
   };
+
   return (
     <div className="container">
       <div className="row justify-content-center">

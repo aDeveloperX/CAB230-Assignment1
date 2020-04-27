@@ -4,14 +4,18 @@ import StockSearcher from "./StockSearcher";
 import StockDetailChart from "./StockDetailChart";
 
 const StockPage = () => {
-  const [query, setQuery] = useState("");
-  console.log(query);
+  const [stockDetail, setStockDetail] = useState();
+  const chartToDisplay =
+    stockDetail === undefined ? (
+      <StockChart></StockChart>
+    ) : (
+      <StockDetailChart stockdetail={stockDetail}></StockDetailChart>
+    );
 
   return (
     <div>
-      <StockSearcher setQuery={setQuery} query={query}></StockSearcher>
-      <StockChart></StockChart>
-      <StockDetailChart></StockDetailChart>
+      <StockSearcher setstock={setStockDetail}></StockSearcher>
+      {chartToDisplay}
     </div>
   );
 };

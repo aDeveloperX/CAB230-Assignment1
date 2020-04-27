@@ -1,41 +1,35 @@
 import React, { useState } from "react";
 import { Table } from "reactstrap";
+import { AgGridReact } from "ag-grid-react";
+import "ag-grid-community/dist/styles/ag-grid.css";
+import "ag-grid-community/dist/styles/ag-theme-balham.css";
 
 const StockDetailChart = (props) => {
-  const getInfo = (stock) => {
-    return stock === undefined ? (
-      <></>
-    ) : (
-      <tr key={stock.name}>
-        <td>{stock.symbol}</td>
-        <td>{stock.name}</td>
-        <td>{stock.industry}</td>
-        <td>{stock.timestamp}</td>
-        <td>{stock.volumes}</td>
-        <td>{stock.high}</td>
-        <td>{stock.low}</td>
-        <td>{stock.open}</td>
-        <td>{stock.close}</td>
-      </tr>
-    );
-  };
+  const column = [
+    { headerName: "Symbol", field: "symbol" },
+    { headerName: "Name", field: "name" },
+    { headerName: "Industry", field: "industry" },
+    { headerName: "TimeStamp", field: "timestamp" },
+    { headerName: "Volumes", field: "volumes" },
+    { headerName: "High", field: "high" },
+    { headerName: "Low", field: "low" },
+    { headerName: "Open", field: "open" },
+    { headerName: "Close", field: "close" },
+  ];
+
   return (
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>Stock Symbol</th>
-          <th>Stock Name</th>
-          <th>Stock Industry</th>
-          <th>Stock Time Stamp</th>
-          <th>Stock Volumes</th>
-          <th>Stock High</th>
-          <th>Stock Low</th>
-          <th>Stock Open</th>
-          <th>Stock Close</th>
-        </tr>
-      </thead>
-      <tbody>{getInfo(props.stockdetail)}</tbody>
-    </Table>
+    <div className="row justify-content-center mt-4">
+      <div
+        className="ag-theme-balham "
+        style={{ height: "700px", width: "80%" }}
+      >
+        <AgGridReact
+          pagination={true}
+          columnDefs={column}
+          rowData={[props.stockdetail]}
+        ></AgGridReact>
+      </div>
+    </div>
   );
 };
 

@@ -6,17 +6,7 @@ import "ag-grid-community/dist/styles/ag-theme-balham.css";
 
 const StockChart = (props) => {
   const getInfo = () => {
-    return props.data === undefined ? (
-      <></>
-    ) : (
-      props.data.map((stock) => {
-        return {
-          name: stock.name,
-          symbol: stock.symbol,
-          industry: stock.industry,
-        };
-      })
-    );
+    return props.data === undefined ? <></> : props.data;
   };
 
   const coloumn = [
@@ -31,7 +21,11 @@ const StockChart = (props) => {
         className="ag-theme-balham "
         style={{ height: "700px", width: "600px" }}
       >
-        <AgGridReact columnDefs={coloumn} rowData={getInfo()}></AgGridReact>
+        <AgGridReact
+          pagination={true}
+          columnDefs={coloumn}
+          rowData={getInfo()}
+        ></AgGridReact>
       </div>
     </div>
   );

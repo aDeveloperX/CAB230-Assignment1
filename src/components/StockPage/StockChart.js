@@ -10,9 +10,19 @@ const StockChart = (props) => {
   };
 
   const coloumn = [
-    { headerName: "Stock Name", field: "name" },
-    { headerName: "Stock Symbol", field: "symbol" },
-    { headerName: "Stock Industry", field: "industry" },
+    { headerName: "Stock Name", field: "name", sortable: true, filter: true },
+    {
+      headerName: "Stock Symbol",
+      field: "symbol",
+      sortable: true,
+      filter: true,
+    },
+    {
+      headerName: "Stock Industry",
+      field: "industry",
+      sortable: true,
+      filter: true,
+    },
   ];
 
   return (

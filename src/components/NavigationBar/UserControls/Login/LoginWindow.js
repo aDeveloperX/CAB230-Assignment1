@@ -33,6 +33,7 @@ const LoginWindow = (props) => {
           console.log(res.message);
         } else {
           localStorage.setItem("token", res.token);
+          localStorage.getItem("isLogin", true);
           props.login();
           props.getname(email);
         }

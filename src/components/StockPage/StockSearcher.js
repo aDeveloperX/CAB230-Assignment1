@@ -9,9 +9,23 @@ const StockSearcher = (props) => {
       });
   };
 
-  const inputHandler = (e) => {
+  const getStocksWithIndustry = async (industry) => {
+    await fetch(
+      `http://131.181.190.87:3000/stocks/symbols?industry=${industry}`
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        res.error ? props.setstocks(undefined) : props.setstocks(res);
+      });
+  };
+
+  const symbolInputHandler = (e) => {
     e.target.value = e.target.value.toUpperCase();
     getStock(e.target.value);
+  };
+
+  const industryInputHandler = (e) => {
+    getStocksWithIndustry(e.target.value);
   };
 
   return (
@@ -20,8 +34,19 @@ const StockSearcher = (props) => {
         <h4>Symbol: </h4>
         <div className="col-4">
           <input
-            onChange={inputHandler}
+            onChange={symbolInputHandler}
             maxLength="5"
+            type="text"
+            className="form-control"
+            placeholder="Enter symbol"
+          />
+        </div>
+      </div>
+      <div className="row justify-content-center mt-3">
+        <h4>Industry: </h4>
+        <div className="col-4">
+          <input
+            onChange={industryInputHandler}
             type="text"
             className="form-control"
             placeholder="Enter symbol"

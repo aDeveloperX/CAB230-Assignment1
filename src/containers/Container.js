@@ -3,6 +3,7 @@ import NavigationBar from "../components/NavigationBar/NavigationBar";
 import { Switch, BrowserRouter, Route } from "react-router-dom";
 import StockPage from "../components/StockPage/StockPage";
 import HomePage from "../components/HomePage/HomePage";
+import StockDetailPage from "../components/StockDetailPage/StockDetailPage";
 
 const Container = () => {
   const [data, setData] = useState([]);
@@ -21,6 +22,10 @@ const Container = () => {
         <Route
           path="/stocks"
           component={() => <StockPage data={data} />}
+        ></Route>
+        <Route
+          path="/stockdetail"
+          component={() => <StockDetailPage />}
         ></Route>
       </Switch>
     </BrowserRouter>

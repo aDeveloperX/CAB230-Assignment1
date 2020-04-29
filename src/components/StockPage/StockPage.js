@@ -26,7 +26,6 @@ const StockPage = (props) => {
         setstocks={setStocks}
       ></StockSearcher>
       {chartToDisplay}
-      <StockDetailPage></StockDetailPage>
     </div>
   );
 };

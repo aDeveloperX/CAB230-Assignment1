@@ -3,14 +3,17 @@ import React from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
+import { useHistory } from "react-router-dom";
 
 const StockChart = (props) => {
   const getInfo = () => {
     return props.data === undefined ? <></> : props.data;
   };
 
+  let history = useHistory();
+
   const cellClickHandler = (e) => {
-    console.log(e);
+    history.push("/stockdetail", { data: e.data.symbol });
   };
 
   const coloumn = [
@@ -26,12 +29,14 @@ const StockChart = (props) => {
       field: "symbol",
       sortable: true,
       filter: true,
+      onCellClicked: cellClickHandler,
     },
     {
       headerName: "Stock Industry",
       field: "industry",
       sortable: true,
       filter: true,
+      onCellClicked: cellClickHandler,
     },
   ];
 
@@ -42,6 +47,7 @@ const StockChart = (props) => {
         style={{ height: "700px", width: "600px" }}
       >
         <AgGridReact
+          rowSelection="single"
           pagination={true}
           columnDefs={coloumn}
           rowData={getInfo()}

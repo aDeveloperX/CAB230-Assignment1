@@ -13,7 +13,7 @@ const UserControls = () => {
   //localStorage.removeItem("isLogin");
   const buildControl =
     localStorage.getItem("isLogin") === "true" ? (
-      <h4 class="text-primary">{localStorage.getItem("username")}</h4>
+      <h4 className="text-primary">{localStorage.getItem("username")}</h4>
     ) : (
       <div className="row">
         <RegisterControl></RegisterControl>

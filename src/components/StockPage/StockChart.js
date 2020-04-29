@@ -16,7 +16,7 @@ const StockChart = (props) => {
     history.push("/stockdetail", { data: e.data.symbol });
   };
 
-  const coloumn = [
+  const column = [
     {
       headerName: "Stock Name",
       field: "name",
@@ -49,7 +49,7 @@ const StockChart = (props) => {
         <AgGridReact
           rowSelection="single"
           pagination={true}
-          columnDefs={coloumn}
+          columnDefs={column}
           rowData={getInfo()}
         ></AgGridReact>
       </div>

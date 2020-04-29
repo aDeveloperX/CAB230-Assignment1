@@ -9,8 +9,18 @@ const StockChart = (props) => {
     return props.data === undefined ? <></> : props.data;
   };
 
+  const cellClickHandler = (e) => {
+    console.log(e);
+  };
+
   const coloumn = [
-    { headerName: "Stock Name", field: "name", sortable: true, filter: true },
+    {
+      headerName: "Stock Name",
+      field: "name",
+      sortable: true,
+      filter: true,
+      onCellClicked: cellClickHandler,
+    },
     {
       headerName: "Stock Symbol",
       field: "symbol",

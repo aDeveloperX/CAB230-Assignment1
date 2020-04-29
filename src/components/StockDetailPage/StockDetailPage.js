@@ -41,7 +41,11 @@ const StockDetailPage = () => {
     )
       .then((response) => response.json())
       .then((res) => {
-        setTimestamps(convertDate(res));
+        if (res === undefined || res.error) {
+          alert("ERROR: " + res.message);
+        } else {
+          setTimestamps(convertDate(res));
+        }
       });
   };
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import DateSelector from "./DateSelector";
 import StockDetailChart from "./StockDetailChart";
+import StockDetailTable from "./StockDetailTable";
 import { Button } from "reactstrap";
 
 const StockDetailPage = () => {
@@ -43,6 +44,7 @@ const StockDetailPage = () => {
       .then((res) => {
         if (res === undefined || res.error) {
           alert("ERROR: " + res.message);
+          setTimestamps([]);
         } else {
           setTimestamps(convertDate(res));
         }
@@ -79,8 +81,6 @@ const StockDetailPage = () => {
     return timestamp;
   };
 
-  console.log(formatDate(startDate));
-
   return (
     <div>
       <div className="d-flex justify-content-center mt-5">
@@ -114,6 +114,11 @@ const StockDetailPage = () => {
       <StockDetailChart
         data={Array.isArray(timestamps) ? timestamps : [timestamps]}
       ></StockDetailChart>
+      <div className="d-flex justify-content-center mt-4">
+        <StockDetailTable
+          data={Array.isArray(timestamps) ? timestamps : [timestamps]}
+        ></StockDetailTable>
+      </div>
     </div>
   );
 };

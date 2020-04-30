@@ -6,11 +6,10 @@ import "ag-grid-community/dist/styles/ag-theme-balham.css";
 import { useHistory } from "react-router-dom";
 
 const StockChart = (props) => {
+  let history = useHistory();
   const getInfo = () => {
     return props.data === undefined ? <></> : props.data;
   };
-
-  let history = useHistory();
 
   const cellClickHandler = (e) => {
     history.push("/stockdetail", { data: e.data.symbol });

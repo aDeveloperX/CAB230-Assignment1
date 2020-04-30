@@ -29,8 +29,8 @@ const LoginWindow = (props) => {
       .then((response) => response.json())
       .then((res) => {
         //"lol@test.com", "123321"
-        if (res.error === true) {
-          console.log(res.message);
+        if (res.error) {
+          alert(res.message);
         } else {
           localStorage.setItem("token", res.token);
           localStorage.setItem("isLogin", true);

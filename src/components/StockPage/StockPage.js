@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import StockChart from "./StockChart";
 import StockSearcher from "./StockSearcher";
 import SymbolResultChart from "./SymbolResultChart";
-import StockDetailPage from "../StockDetailPage/StockDetailPage";
 
 const StockPage = (props) => {
   const [stockDetail, setStockDetail] = useState();

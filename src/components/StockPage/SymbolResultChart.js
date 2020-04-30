@@ -8,7 +8,11 @@ const StockSymbolResultChart = (props) => {
   let history = useHistory();
 
   const cellClickHandler = (e) => {
-    history.push("/stockdetail", { data: e.data.symbol });
+    if (localStorage.getItem("isLogin") === "true") {
+      history.push("/stockdetail", { data: e.data.symbol });
+    } else {
+      alert("Please login first in order to see more details");
+    }
   };
   const column = [
     { headerName: "Symbol", field: "symbol", onCellClicked: cellClickHandler },

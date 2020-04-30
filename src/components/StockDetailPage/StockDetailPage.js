@@ -43,8 +43,10 @@ const StockDetailPage = () => {
       .then((response) => response.json())
       .then((res) => {
         if (res === undefined || res.error) {
+          localStorage.removeItem("isLogin");
           alert("ERROR: " + res.message);
-          setTimestamps([]);
+
+          //setTimestamps([]);
         } else {
           setTimestamps(convertDate(res));
         }
@@ -83,6 +85,11 @@ const StockDetailPage = () => {
 
   return (
     <div>
+      <div className="d-flex justify-content-center mt-5">
+        <h2 className="text-primary">
+          {timestamps === undefined ? "Loading" : timestamps[0].name}
+        </h2>
+      </div>
       <div className="d-flex justify-content-center mt-5">
         <div className="row ">
           <h5>Start Date: </h5>

@@ -32,12 +32,14 @@ const RegisterWindow = (props) => {
       },
     };
     fetch("http://131.181.190.87:3000/user/register", post)
-      .then((response) => response.json)
+      .then((response) => response.json())
       .then((res) => {
-        if (res.err) {
+        if (res.error) {
+          alert(res.message);
           console.log(res);
         } else {
-          window.alert("Register Succeeded");
+          console.log(res);
+          alert(res.message);
           props.toggle();
         }
       });

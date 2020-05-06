@@ -15,7 +15,7 @@ const StockDetailTable = (props) => {
       <Line type="monotone" dataKey="volumes" stroke="#8884d8"></Line>
       <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
       <XAxis dataKey="timestamp" />
-      <YAxis width={100} />
+      <YAxis width={80} />
       <Tooltip
         content={
           <StockDetailTableTooltip data={props.data}></StockDetailTableTooltip>

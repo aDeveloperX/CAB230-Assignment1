@@ -23,7 +23,7 @@ const StockDetailPage = () => {
     fetch(`${URL}/authed/${symbol}`, { headers })
       .then((response) => response.json())
       .then((res) => {
-        if (!isCancelled.current) {
+        if (!isCancelled.current && !res.error) {
           setTimestamps(convertDate(res));
         }
       });
@@ -45,8 +45,6 @@ const StockDetailPage = () => {
         if (res === undefined || res.error) {
           localStorage.removeItem("isLogin");
           alert("ERROR: " + res.message);
-
-          //setTimestamps([]);
         } else {
           setTimestamps(convertDate(res));
         }
@@ -56,8 +54,11 @@ const StockDetailPage = () => {
   const convertDate = (data) => {
     data = Array.isArray(data) ? data : [data];
     data.forEach((d) => {
-      d.timestamp = d.timestamp.slice(0, d.timestamp.indexOf("T"));
+      if (d) {
+        d.timestamp = d.timestamp.slice(0, d.timestamp.indexOf("T"));
+      }
     });
+
     return data;
   };
 
@@ -87,7 +88,7 @@ const StockDetailPage = () => {
     <div>
       <div className="d-flex justify-content-center mt-5">
         <h2 className="text-primary">
-          {timestamps === undefined ? "Loading" : timestamps[0].name}
+          {timestamps === undefined ? "No Data" : timestamps[0].name}
         </h2>
       </div>
       <div className="d-flex justify-content-center mt-5">

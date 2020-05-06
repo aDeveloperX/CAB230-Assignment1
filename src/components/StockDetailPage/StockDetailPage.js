@@ -4,6 +4,7 @@ import DateSelector from "./DateSelector";
 import StockDetailChart from "./StockDetailChart";
 import StockDetailTable from "./StockDetailTable";
 import { Button } from "reactstrap";
+import "./StockDetailPage.css";
 
 const StockDetailPage = () => {
   const isCancelled = useRef(false);
@@ -85,47 +86,49 @@ const StockDetailPage = () => {
   };
 
   return (
-    <div>
-      <div className="d-flex justify-content-center mt-5">
-        <h2 className="text-primary">
-          {timestamps === undefined ? "No Data" : timestamps[0].name}
-        </h2>
-      </div>
-      <div className="d-flex justify-content-center mt-5">
-        <div className="row ">
-          <h5>Start Date: </h5>
-          <DateSelector
-            date={startDate}
-            enddate={endDate}
-            setdate={setStartDate}
-          ></DateSelector>
+    <div className="stockdetailpage pb-2">
+      <div className="pt-3">
+        <div className="d-flex justify-content-center">
+          <h2 className="text-primary">
+            {timestamps === undefined ? "No Data" : timestamps[0].name}
+          </h2>
         </div>
-        <div className="row ml-5">
-          <h5>End Date: </h5>
-          <DateSelector
-            date={endDate}
-            startdate={startDate}
-            setdate={setEndDate}
-          ></DateSelector>
+        <div className="d-flex justify-content-center mt-5">
+          <div className="row ">
+            <h5>Start Date: </h5>
+            <DateSelector
+              date={startDate}
+              enddate={endDate}
+              setdate={setStartDate}
+            ></DateSelector>
+          </div>
+          <div className="row ml-5">
+            <h5>End Date: </h5>
+            <DateSelector
+              date={endDate}
+              startdate={startDate}
+              setdate={setEndDate}
+            ></DateSelector>
+          </div>
+          <div className="row ml-4">
+            <Button
+              color="primary"
+              disabled={!startDate || !endDate}
+              onClick={getAdditionalData}
+            >
+              Search
+            </Button>
+          </div>
         </div>
-        <div className="row ml-4">
-          <Button
-            color="primary"
-            disabled={!startDate || !endDate}
-            onClick={getAdditionalData}
-          >
-            Search
-          </Button>
-        </div>
-      </div>
 
-      <StockDetailChart
-        data={Array.isArray(timestamps) ? timestamps : [timestamps]}
-      ></StockDetailChart>
-      <div className="d-flex justify-content-center mt-4">
-        <StockDetailTable
+        <StockDetailChart
           data={Array.isArray(timestamps) ? timestamps : [timestamps]}
-        ></StockDetailTable>
+        ></StockDetailChart>
+        <div className="d-flex justify-content-center mt-4">
+          <StockDetailTable
+            data={Array.isArray(timestamps) ? timestamps : [timestamps]}
+          ></StockDetailTable>
+        </div>
       </div>
     </div>
   );

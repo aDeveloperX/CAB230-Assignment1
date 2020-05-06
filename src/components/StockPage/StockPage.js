@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import StockChart from "./StockChart";
 import StockSearcher from "./StockSearcher";
 import SymbolResultChart from "./SymbolResultChart";
+import "./StockPage.css";
 
 const StockPage = (props) => {
   const [stockDetail, setStockDetail] = useState();
@@ -19,11 +20,14 @@ const StockPage = (props) => {
     );
 
   return (
-    <div>
-      <StockSearcher
-        setstock={setStockDetail}
-        setstocks={setStocks}
-      ></StockSearcher>
+    <div className="stockpage pb-2">
+      <div className="pt-4">
+        <StockSearcher
+          setstock={setStockDetail}
+          setstocks={setStocks}
+        ></StockSearcher>
+      </div>
+
       {chartToDisplay}
     </div>
   );

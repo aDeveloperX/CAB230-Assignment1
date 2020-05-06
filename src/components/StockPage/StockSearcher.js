@@ -29,7 +29,7 @@ const StockSearcher = (props) => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="container">
       <div className="row justify-content-center">
         <h4>Symbol: </h4>
         <div className="col-4">

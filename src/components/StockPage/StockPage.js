@@ -8,20 +8,19 @@ const StockPage = (props) => {
   const [stockDetail, setStockDetail] = useState();
   const [stocks, setStocks] = useState();
 
-  const chartToDisplay =
-    stockDetail === undefined ? (
-      stocks === undefined ? (
-        <StockChart data={props.data}></StockChart>
-      ) : (
-        <StockChart data={stocks}></StockChart>
-      )
+  const chartToDisplay = !stockDetail ? (
+    !stocks ? (
+      <StockChart data={props.data}></StockChart>
     ) : (
-      <SymbolResultChart stockdetail={stockDetail}></SymbolResultChart>
-    );
+      <StockChart data={stocks}></StockChart>
+    )
+  ) : (
+    <SymbolResultChart stockdetail={stockDetail}></SymbolResultChart>
+  );
 
   return (
-    <div className="stockpage pb-2">
-      <div className="pt-4">
+    <div className="stockpage">
+      <div className=" pt-4">
         <StockSearcher
           setstock={setStockDetail}
           setstocks={setStocks}

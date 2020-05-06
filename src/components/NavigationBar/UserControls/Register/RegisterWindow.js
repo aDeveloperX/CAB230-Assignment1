@@ -36,9 +36,7 @@ const RegisterWindow = (props) => {
       .then((res) => {
         if (res.error) {
           alert(res.message);
-          console.log(res);
         } else {
-          console.log(res);
           alert(res.message);
           props.toggle();
         }

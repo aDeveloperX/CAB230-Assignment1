@@ -10,7 +10,7 @@ const UserControls = () => {
       setIsLoggedin(true);
     }
   };
-  //localStorage.removeItem("isLogin");
+
   const buildControl =
     localStorage.getItem("isLogin") === "true" ? (
       <h4 className="text-primary">{localStorage.getItem("username")}</h4>

@@ -17,7 +17,9 @@ const UserControls = () => {
     ) : (
       <div className="row">
         <RegisterControl></RegisterControl>
-        <LoginControl login={loginHandler}></LoginControl>
+        <div className="ml-1">
+          <LoginControl login={loginHandler}></LoginControl>
+        </div>
       </div>
     );
 

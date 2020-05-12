@@ -7,6 +7,7 @@ import StockDetailPage from "../components/StockPage/StockDetailPage/StockDetail
 
 const Container = () => {
   const [data, setData] = useState([]);
+  //initial data is fetched here, use useEffect to make sure the data is only fetehed once
   useEffect(() => {
     fetch("http://131.181.190.87:3000/stocks/symbols")
       .then((response) => response.json())

@@ -13,6 +13,7 @@ const RegisterWindow = (props) => {
     setPassword(e.target.value);
   };
 
+  // check if the email and password are empty, if not, send register request to the server
   const submitHandler = async (e) => {
     e.preventDefault();
     if (email !== "" && password !== "") {
@@ -20,7 +21,7 @@ const RegisterWindow = (props) => {
     }
   };
 
-  const registerUser = async (email, password) => {
+  const registerUser = (email, password) => {
     const post = {
       method: "POST",
       body: JSON.stringify({
@@ -34,6 +35,7 @@ const RegisterWindow = (props) => {
     fetch("http://131.181.190.87:3000/user/register", post)
       .then((response) => response.json())
       .then((res) => {
+        // error handling
         if (res.error) {
           alert(res.message);
         } else {

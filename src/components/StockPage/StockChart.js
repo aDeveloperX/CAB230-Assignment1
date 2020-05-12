@@ -11,12 +11,9 @@ const StockChart = (props) => {
     return props.data === undefined ? <></> : props.data;
   };
 
+  //navigate to the stockdetail page along with sending the symbol information
   const cellClickHandler = (e) => {
-    if (localStorage.getItem("isLogin") === "true") {
-      history.push("/stockdetail", { data: e.data.symbol });
-    } else {
-      alert("Please login first in order to see more details");
-    }
+    history.push("/stockdetail", { data: e.data.symbol });
   };
 
   const column = [

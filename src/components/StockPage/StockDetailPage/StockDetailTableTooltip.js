@@ -1,6 +1,7 @@
 import React from "react";
 
 const StockDetailTableTooltip = (e) => {
+  //customised pop up tooltip for chart
   return e.payload[0] === undefined ? (
     <div></div>
   ) : (

@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const DateSelector = (props) => {
+  //a simply reuseable component
   return (
     <DatePicker
       selected={props.date}

@@ -5,6 +5,7 @@ import LoginWindow from "./LoginWindow";
 const LoginControl = (props) => {
   const [isPoped, setIsPoped] = useState(false);
 
+  //to toggle the login window
   const toggleHandler = () => {
     setIsPoped(!isPoped);
   };

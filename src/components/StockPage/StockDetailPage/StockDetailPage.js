@@ -16,12 +16,9 @@ const StockDetailPage = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
+  //get initial data without requiring user to login
   const getInitData = () => {
-    const headers = {
-      accept: "application.json",
-      Authorization: `Bearer ${token}`,
-    };
-    fetch(`${URL}/authed/${symbol}`, { headers })
+    fetch(`${URL}/${symbol}`)
       .then((response) => response.json())
       .then((res) => {
         if (!isCancelled.current && !res.error) {
@@ -30,28 +27,40 @@ const StockDetailPage = () => {
       });
   };
 
+  //get additional data here, users must login first
   const getAdditionalData = () => {
-    const headers = {
-      accept: "application.json",
-      Authorization: `Bearer ${token}`,
-    };
-    fetch(
-      `${URL}/authed/${symbol}?from=${formatDate(startDate)}&to=${formatDate(
-        endDate
-      )}`,
-      { headers }
-    )
-      .then((response) => response.json())
-      .then((res) => {
-        if (res === undefined || res.error) {
-          localStorage.removeItem("isLogin");
-          alert("ERROR: " + res.message);
-        } else {
-          setTimestamps(convertDate(res));
-        }
-      });
+    if (localStorage.getItem("isLogin") === "true") {
+      const headers = {
+        accept: "application.json",
+        Authorization: `Bearer ${token}`,
+      };
+      fetch(
+        `${URL}/authed/${symbol}?from=${formatDate(startDate)}&to=${formatDate(
+          endDate
+        )}`,
+        { headers }
+      )
+        .then((response) => response.json())
+        .then((res) => {
+          //error handling
+          if (res === undefined || res.error) {
+            console.log(res);
+            alert("ERROR: " + res.message);
+            //reload the page if the token is expired
+            if (res.message == "jwt expired") {
+              localStorage.clear();
+              window.location.reload(true);
+            }
+          } else {
+            setTimestamps(convertDate(res));
+          }
+        });
+    } else {
+      alert("Please login first in order to see more details");
+    }
   };
 
+  //convert the date in order to make API request
   const convertDate = (data) => {
     data = Array.isArray(data) ? data : [data];
     data.forEach((d) => {
@@ -70,6 +79,7 @@ const StockDetailPage = () => {
     };
   }, []);
 
+  //reformat the date in order to make API calls
   const formatDate = (date) => {
     let d = new Date(date),
       month = "" + (d.getMonth() + 1),
@@ -86,12 +96,10 @@ const StockDetailPage = () => {
   };
 
   return (
-    <div className="stockdetailpage pb-2">
+    <div className="stockdetailpage">
       <div className="pt-3">
         <div className="d-flex justify-content-center">
-          <h2 className="text-primary">
-            {timestamps === undefined ? "No Data" : timestamps[0].name}
-          </h2>
+          <h2 className="text-primary">{symbol}</h2>
         </div>
         <div className="d-flex justify-content-center mt-5">
           <div className="row ">

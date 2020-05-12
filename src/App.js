@@ -4,7 +4,8 @@ import Container from "./containers/Container";
 import "./App.css";
 
 function App() {
-  localStorage.clear();
+  //clear all stored information whenever the app is restarted
+  localStorage.removeItem("isLogin");
   return (
     <>
       <Container></Container>

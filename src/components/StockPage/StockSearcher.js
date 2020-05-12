@@ -20,6 +20,7 @@ const StockSearcher = (props) => {
   };
 
   const symbolInputHandler = (e) => {
+    //capatlise the input
     e.target.value = e.target.value.toUpperCase();
     getStock(e.target.value);
   };

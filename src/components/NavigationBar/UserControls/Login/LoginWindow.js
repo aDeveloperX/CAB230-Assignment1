@@ -14,7 +14,7 @@ const LoginWindow = (props) => {
     setPassword(e.target.value);
   };
 
-  const loginUser = async () => {
+  const loginUser = () => {
     const post = {
       method: "POST",
       body: JSON.stringify({
@@ -41,6 +41,7 @@ const LoginWindow = (props) => {
   };
 
   const submitHandler = async (e) => {
+    //prevent default action
     e.preventDefault();
     if (email !== "" && password !== "") {
       await loginUser();

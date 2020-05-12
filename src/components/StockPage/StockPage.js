@@ -8,6 +8,7 @@ const StockPage = (props) => {
   const [stockDetail, setStockDetail] = useState();
   const [stocks, setStocks] = useState();
 
+  // nested tenary expression
   const chartToDisplay = !stockDetail ? (
     !stocks ? (
       <StockChart data={props.data}></StockChart>
@@ -26,7 +27,6 @@ const StockPage = (props) => {
           setstocks={setStocks}
         ></StockSearcher>
       </div>
-
       {chartToDisplay}
     </div>
   );

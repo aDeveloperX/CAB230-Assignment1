@@ -5,6 +5,7 @@ import RegisterControl from "./Register/RegisterControl";
 const UserControls = () => {
   const [isLoggedin, setIsLoggedin] = useState(false);
 
+  //if the user is loggedin
   const loginHandler = () => {
     if (!isLoggedin) {
       setIsLoggedin(true);
@@ -12,6 +13,7 @@ const UserControls = () => {
   };
 
   const buildControl =
+    // if the user is logged in, display the username, otherwise display the login and register buttons
     localStorage.getItem("isLogin") === "true" ? (
       <h4 className="text-primary">{localStorage.getItem("username")}</h4>
     ) : (

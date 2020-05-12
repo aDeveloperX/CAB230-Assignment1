@@ -5,6 +5,7 @@ import RegisterWindow from "./RegisterWindow";
 const RegisterControl = () => {
   const [isPoped, setIsPoped] = useState(false);
 
+  //toggle the pop up register window
   const toggleHandler = () => {
     setIsPoped(!isPoped);
   };
